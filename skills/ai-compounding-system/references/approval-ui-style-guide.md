@@ -6,6 +6,18 @@ Use this when creating a local HTML approval workbench.
 
 The approval page should help a non-technical user decide quickly. It is not a log viewer.
 
+## Template Rule
+
+必须优先复制模板，再填入数据；不允许从零生成另一套审批台。
+
+- Global desk template: `templates/00_全局审批台.template.html`
+- Single-day desk template: `templates/01_单日审批台.template.html`
+- Shared CSS: `assets/approval-workbench-mac.css`
+- Shared behavior: `assets/approval-workbench.js`
+- Action schema: `schemas/approval-actions.json`
+
+The style guide is not just visual advice. The templates and schema are the canonical implementation for public/new-user output.
+
 ## Recommended Layout
 
 - Light desktop background that works in macOS Chrome, Windows Chrome, Edge, and the Codex in-app browser.
@@ -51,6 +63,12 @@ Each card should show:
 9. User note field.
 10. Approval result copy instructions.
 
+Every single-day page should start with a short high-value overview:
+
+```text
+太棒了，今天你和 Codex/Code Desk 完成了 X 条工作线，我整理成 X 张审批卡。主要包括：规则沉淀、Skill 候选、文稿候选、数字资产建议。你只需要逐张判断下一步要不要推进。
+```
+
 ## Required Behavior
 
 - Notes must autosave locally if possible.
@@ -65,6 +83,21 @@ Each card should show:
 - Card IDs should remain stable when the page is regenerated for the same date.
 - If a missing item is added while the user is mid-approval, preserve existing card IDs and provide an import/merge option for the old approval result payload.
 - Evidence can be folded, but not lost.
+- 每张卡必须提供完整主动作列表 from `schemas/approval-actions.json`; default selection can vary, but options must not be reduced.
+- Additional actions and digital asset actions must also follow `schemas/approval-actions.json`.
+
+## Output Self-Check
+
+Before reporting completion, perform 输出后自检:
+
+- `00_全局审批台.html` exists.
+- `01_单日审批台_YYYY-MM-DD.html` exists.
+- Both pages use the shared CSS and JS, or inline an equivalent copy from those assets.
+- The single-day page includes `太棒了` in the overview.
+- Every approval card has every primary action from `schemas/approval-actions.json`.
+- Every approval card has additional action controls, digital asset action controls, and a note field.
+- The visible return button says `复制审批结果`.
+- The fallback textarea and copy-failure instruction are visible.
 
 ## Copy Fallback Behavior
 
@@ -85,6 +118,7 @@ Do not leave the user on a blank textarea with no instruction.
 - Mixing writing approval with asset-library approval.
 - Redesigning the approval page every run.
 - Removing action choices just to make the page shorter.
+- Treating `schemas/approval-actions.json` as optional.
 - Showing technical-format labels as the obvious way to return approvals.
 - Reporting English artifact filenames as the main completion entry for Chinese users.
 - Generating only a single-day page without a global approval desk.

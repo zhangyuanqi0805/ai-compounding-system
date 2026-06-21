@@ -1,0 +1,98 @@
+#!/usr/bin/env node
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+
+const checks = [];
+
+function file(relativePath) {
+  return path.join(root, relativePath);
+}
+
+function read(relativePath) {
+  return fs.readFileSync(file(relativePath), "utf8");
+}
+
+function expectFile(relativePath) {
+  checks.push({
+    label: `exists: ${relativePath}`,
+    ok: fs.existsSync(file(relativePath)),
+  });
+}
+
+function expectIncludes(relativePath, text) {
+  const content = fs.existsSync(file(relativePath)) ? read(relativePath) : "";
+  checks.push({
+    label: `${relativePath} includes ${text}`,
+    ok: content.includes(text),
+  });
+}
+
+function expectAllIncludes(relativePath, texts) {
+  const content = fs.existsSync(file(relativePath)) ? read(relativePath) : "";
+  for (const text of texts) {
+    checks.push({
+      label: `${relativePath} includes ${text}`,
+      ok: content.includes(text),
+    });
+  }
+}
+
+expectFile("skills/ai-compounding-system/templates/00_全局审批台.template.html");
+expectFile("skills/ai-compounding-system/templates/01_单日审批台.template.html");
+expectFile("skills/ai-compounding-system/assets/approval-workbench-mac.css");
+expectFile("skills/ai-compounding-system/assets/approval-workbench.js");
+expectFile("skills/ai-compounding-system/schemas/approval-actions.json");
+
+expectAllIncludes("skills/ai-compounding-system/SKILL.md", [
+  "templates/00_全局审批台.template.html",
+  "templates/01_单日审批台.template.html",
+  "schemas/approval-actions.json",
+  "太棒了",
+  "全局复利与踩坑日志",
+  "高档优先",
+  "超高档",
+]);
+
+expectAllIncludes("skills/ai-compounding-system/references/onboarding-guide.md", [
+  "第 0.4 步",
+  "愿意",
+  "暂时不",
+  "忽略",
+  "我可以建议在你的文档目录下新建一个 `数字资产库` 文件夹",
+  "全局复利与踩坑日志",
+]);
+
+expectAllIncludes("skills/ai-compounding-system/references/approval-ui-style-guide.md", [
+  "必须优先复制模板",
+  "不允许从零生成另一套审批台",
+  "每张卡必须提供完整主动作列表",
+  "输出后自检",
+]);
+
+expectAllIncludes("skills/ai-compounding-system/templates/01_单日审批台.template.html", [
+  "太棒了",
+  "复制审批结果",
+  "写全局规则",
+  "写项目规则",
+  "写复利日志",
+  "直接做 Skill",
+  "主题摘要通过-写初稿",
+  "初稿通过-写拓展稿",
+  "再改主题摘要",
+  "待定-看备注",
+  "丢弃",
+]);
+
+const failed = checks.filter((check) => !check.ok);
+if (failed.length) {
+  console.error(`FAILED ${failed.length}/${checks.length} checks`);
+  for (const item of failed) {
+    console.error(`- ${item.label}`);
+  }
+  process.exit(1);
+}
+
+console.log(`PASS ${checks.length} checks`);

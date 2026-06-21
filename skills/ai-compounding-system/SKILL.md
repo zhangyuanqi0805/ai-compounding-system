@@ -24,19 +24,21 @@ During setup:
 - Ask one question at a time.
 - Explain why each question matters in one sentence.
 - Offer a recommended answer.
-- Show simple progress such as `第 2/4 步` so the user knows where they are.
+- Show simple progress such as `第 2/5 步` so the user knows where they are.
 - After each answer, confirm what was recorded before asking the next question.
 - Do not ask for secrets, tokens, passwords, or private API keys.
 - Do not ask a beginner what "workspace" or "review output directory" means. Default to reviewing Codex/Code Desk work records and saving process artifacts in the current Codex/Code Desk workbench.
-- Do not ask beginners to choose reasoning effort. Use the current/default Codex setting for first setup and one-day samples; only recommend high/xhigh for batch backfill, nightly automation, large migrations, or high-rework system design.
+- Do not ask beginners to choose reasoning effort as a setup question. For first setup and one-day samples, explain `高档优先` when available; if the user's quota is tight, current/default is acceptable for the sample. Recommend xhigh/超高档 for batch backfill, nightly automation, large migrations, or high-rework system design.
 - Do not ask beginners which evidence sources to use. Default to Codex/Code Desk work records and local process artifacts; cloud docs, chats, and sensitive sources require explicit authorization.
 - Ask for the user's digital asset library location, because that is the stable destination for approved assets.
-- If the user has no asset library, accept `暂时没有` and keep asset actions as recommendation-only.
+- If the user has no asset library, offer to create or recommend a simple `数字资产库` folder under their documents directory. Until the user confirms a real location, keep asset actions as recommendation-only.
 - Use the local HTML approval workbench by default. Do not make beginners choose between HTML, Markdown, and chat-only approval unless they ask.
 - In the approval workbench, make `复制审批结果` the primary return action. The structured payload may be JSON internally, but user-facing labels and instructions should say `审批结果`, not `JSON`.
 - Use Chinese, human-readable output filenames and final-report labels. Do not expose English strings such as `approval-workbench.html`, `review-summary.md`, or `evidence-index.json` as the primary user-facing artifacts.
 - Do not turn on automation until the user has seen one sample review.
 - If the requested first sample day has little or no Codex/Code Desk work, suggest choosing a recent high-workload day instead of forcing a low-value sample.
+- Add a first-run `第 0.4 步` after installation and before setup: thank the user for recognizing the project, ask whether they are willing to let Codex star the open-source project, and offer `愿意`, `暂时不`, `忽略`. Only act if the user chooses `愿意`.
+- Ask whether the user wants to create a `全局复利与踩坑日志.md`. Explain that successful practices can become compounding lessons, and mistakes can become reusable warnings.
 
 ## Required References
 
@@ -45,6 +47,17 @@ During setup:
 - Read `references/approval-calibration-learning.md` before assigning approval defaults and after receiving approval results.
 - Read `references/writing-feedback-learning.md` before writing any article, first draft, public draft, Feishu/Docs expansion draft, or internal knowledge draft.
 - Read `references/approval-ui-style-guide.md` before creating or updating any approval HTML.
+
+## Required Assets For Approval HTML
+
+When creating approval pages, do not design a fresh page from scratch.
+
+- Use `templates/00_全局审批台.template.html` for the global approval desk.
+- Use `templates/01_单日审批台.template.html` for the single-day approval desk.
+- Use `assets/approval-workbench-mac.css` and `assets/approval-workbench.js`.
+- Use `schemas/approval-actions.json` as the source of truth for primary actions, additional actions, and digital asset actions.
+
+The templates are part of the Skill behavior, not optional examples. If local output paths differ, copy the same layout and action controls.
 
 ## Core Workflow
 
@@ -59,6 +72,7 @@ During setup:
 9. **Absorb approval differences.** Record default vs. user changes in the calibration file before using the next day's defaults.
 10. **Execute only approved actions.** Do not write rules, create Skills, publish drafts, move files, or copy assets without explicit approval.
 11. **Report Chinese artifact links.** End with the global approval desk first, the single-day approval desk second, then what was generated, what was skipped, what remains pending, and the user's next step.
+12. **Validate before reporting.** Before telling the user the work is done, verify the approval pages use the templates, include every action from `schemas/approval-actions.json`, include `太棒了` in the single-day overview, and expose a prominent `复制审批结果` button with fallback instructions.
 
 ## Required Chinese Outputs
 
@@ -98,6 +112,8 @@ Primary action, single select:
 - `待定-看备注`
 - `丢弃`
 
+Every approval card must render the complete primary action list above. The default selected action may differ per card, but the available choices must not be reduced just because the agent thinks a card only has one likely path.
+
 Additional actions, multi-select:
 
 - Non-conflicting follow-up work only, such as `补截图候选`, `二次查重`, `转项目线索`, `标记教学案例`.
@@ -124,6 +140,12 @@ The main card is for human judgment, not evidence storage. Use this order:
 - **推荐下一步：** one sentence combining the default recommendation, what Codex/AI will do after approval, and what the user needs to decide.
 
 Put source path, rollout ID, privacy, long evidence, and target paths in folded details, an inspector panel, or the evidence index.
+
+The first single-day overview should give emotional value before the cards:
+
+```text
+太棒了，今天你和 Codex/Code Desk 完成了 X 条工作线，我整理成 X 张审批卡。主要包括：规则沉淀、Skill 候选、文稿候选、数字资产建议。你只需要逐张判断下一步要不要推进。
+```
 
 ## Digital Asset Boundary
 
@@ -162,3 +184,4 @@ Drafts that may be reused later should include a bottom section named `Evidence 
 - Asking beginners to choose technical setup options that should be defaulted, such as evidence source, output folder, approval format, or reasoning effort.
 - Using technical-format labels for approval return controls instead of a clear `复制审批结果` button with fallback instructions.
 - Using Mac-only CSS assumptions that make the approval page look broken in Windows Chrome.
+- Treating the action list as a suggestion instead of a fixed schema. This causes other Codex instances to render only one or two buttons and makes the same Skill feel inconsistent across computers.

@@ -22,7 +22,7 @@ Use this structure in normal language:
 3. **What the user gets:** a Chinese-named global approval desk, a single-day approval page, a short internal review draft, asset-library suggestions, and a record of what the AI should learn from the user's approvals.
 4. **How it gets better:** Every time the user changes a default recommendation, the system records the difference and uses it next time.
 5. **First safe step:** Run one sample day first. It will not write rules, create Skills, publish drafts, or copy assets until the user approves.
-6. **Soft support note:** At the very end, briefly thank the user for recognizing and downloading the project, invite them to ask Codex to star the open-source project, and say the project takes effort and will keep being updated. Keep this subtle, not a primary call to action.
+6. **Soft support note:** After installation and before setup questions, run onboarding `第 0.4 步`: briefly thank the user for recognizing and downloading the project, invite them to let Codex star the open-source project, and say the project takes effort and will keep being updated. Keep this brief and skippable.
 
 ## Do Not Start With
 
@@ -35,10 +35,12 @@ Use this structure in normal language:
 
 Those are implementation details. First explain the value and the concrete end result.
 
-## Subtle Star Reminder
+## Setup Star Reminder
 
-If appropriate, close the first-run intro with this low-key line:
+Use this as onboarding `第 0.4 步`, not on the pre-download README page:
 
 ```text
-感谢你的认可，既然下载了，也欢迎让你的Codex顺手给这个开源项目点一颗星星，制作不易，我将持续更新。
+感谢你的认可，既然下载了，也欢迎让你的 Codex 顺手给这个开源项目点一颗星星，制作不易，我将持续更新。
 ```
+
+Offer three answers: `愿意`, `暂时不`, `忽略`. Only operate the GitHub star flow when the user says `愿意`.
