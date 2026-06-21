@@ -47,6 +47,7 @@ Use these defaults unless the user explicitly asks to change them:
 - **Cloud content:** record links only until the user explicitly authorizes reading.
 - **Process artifacts:** save under the current Codex/Code Desk workbench, recommended folder `AI复利系统/过程产物/`.
 - **Approval surface:** local HTML approval workbench.
+- **Approval entry:** always create `00_全局审批台.html` and `01_单日审批台_YYYY-MM-DD.html`; recommend the global approval desk first.
 - **Approval return:** user clicks `复制审批结果`, then pastes the result back into Codex.
 - **Reasoning effort:** use current/default for setup and one-day sample; recommend high/xhigh only for batch backfill, nightly automation, large migration, or high-rework system design.
 - **Automation:** off until one sample review has been accepted.
@@ -125,16 +126,17 @@ Minimum content:
 ```markdown
 # AI 复利系统配置
 
-- Digital asset library root:
-- Workbench artifact directory:
-- Timezone:
-- Evidence sources: Codex/Code Desk work records + local process artifacts by default; cloud content only after authorization
-- Approval format: local HTML approval workbench
-- Approval return method: click `复制审批结果`, then paste back to Codex
-- Reasoning effort: current/default for setup and one-day sample; high/xhigh only for batch or high-rework work
-- Automation:
-- User naming preference:
-- Writing preferences:
+- 数字资产库目录：
+- 工作台过程产物目录：
+- 时区：
+- 证据来源：默认读取 Codex/Code Desk 工作记录和本地过程产物；云端内容授权后才读取
+- 审批方式：本地 HTML 审批台
+- 审批入口文件：`00_全局审批台.html`、`01_单日审批台_YYYY-MM-DD.html`
+- 审批结果回传：点击 `复制审批结果`，再粘贴回 Codex
+- 推理档位：首次配置和一天小样使用当前/默认档位；批量或高返工任务再建议 high/xhigh
+- 自动化：
+- 用户称呼偏好：
+- 写作偏好：
 ```
 
 ## 第一天小样
@@ -147,7 +149,7 @@ Before starting the sample, summarize:
 - 过程产物目录：当前 Codex/Code Desk 工作台下的 AI复利系统/过程产物/
 - 时区：
 - 证据来源：Codex/Code Desk 工作记录和本地过程产物；云端内容只记录链接，授权后才读取
-- 审批方式：本地 HTML 审批台，点击“复制审批结果”后粘贴回 Codex
+- 审批方式：本地 HTML 审批台；完成后优先打开 `00_全局审批台.html`，再进入 `01_单日审批台_YYYY-MM-DD.html`；审批后点击“复制审批结果”粘贴回 Codex
 
 如果这些没问题，我就先跑一天小样；这次不会自动写规则、不会自动做 Skill、不会自动入库、不会发布。
 ```

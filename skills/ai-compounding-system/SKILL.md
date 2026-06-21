@@ -34,6 +34,7 @@ During setup:
 - If the user has no asset library, accept `暂时没有` and keep asset actions as recommendation-only.
 - Use the local HTML approval workbench by default. Do not make beginners choose between HTML, Markdown, and chat-only approval unless they ask.
 - In the approval workbench, make `复制审批结果` the primary return action. The structured payload may be JSON internally, but user-facing labels and instructions should say `审批结果`, not `JSON`.
+- Use Chinese, human-readable output filenames and final-report labels. Do not expose English strings such as `approval-workbench.html`, `review-summary.md`, or `evidence-index.json` as the primary user-facing artifacts.
 - Do not turn on automation until the user has seen one sample review.
 - If the requested first sample day has little or no Codex/Code Desk work, suggest choosing a recent high-workload day instead of forcing a low-value sample.
 
@@ -57,7 +58,31 @@ During setup:
 8. **Return approval results.** Notes typed in a local page are not available until the user clicks `复制审批结果` or otherwise sends the structured result text back.
 9. **Absorb approval differences.** Record default vs. user changes in the calibration file before using the next day's defaults.
 10. **Execute only approved actions.** Do not write rules, create Skills, publish drafts, move files, or copy assets without explicit approval.
-11. **Report a ledger.** End with what was generated, what was executed, what was skipped, what remains pending, and the user's next step.
+11. **Report Chinese artifact links.** End with the global approval desk first, the single-day approval desk second, then what was generated, what was skipped, what remains pending, and the user's next step.
+
+## Required Chinese Outputs
+
+Every one-day sample or daily review must create a global approval entry and a single-day approval page, even if only one date has been reviewed.
+
+Required user-facing artifacts:
+
+- `00_全局审批台.html` — main entry. Recommend the user open this first.
+- `01_单日审批台_YYYY-MM-DD.html` — single-day approval page for the reviewed date.
+- `02_内部复盘稿_YYYY-MM-DD.md` — internal review summary.
+- `03_轻量证据索引_YYYY-MM-DD.json` — lightweight evidence index.
+
+Optional artifacts, when useful:
+
+- `04_运行账本_YYYY-MM-DD.md`
+- `05_数字资产入库建议_YYYY-MM-DD.md`
+
+Final response rules:
+
+- Show Chinese display names and clickable links first.
+- First recommendation must be: open `00_全局审批台.html`.
+- Mention `01_单日审批台_YYYY-MM-DD.html` as the detailed daily page.
+- Do not list English filenames as the main deliverables for Chinese users.
+- If an internal script or tool generated English filenames, create Chinese-named outputs or aliases before reporting completion.
 
 ## Approval Actions
 

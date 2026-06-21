@@ -54,6 +54,9 @@ Each card should show:
 ## Required Behavior
 
 - Notes must autosave locally if possible.
+- Every run must have a global approval desk named `00_全局审批台.html`.
+- Every reviewed date must have a single-day approval page named `01_单日审批台_YYYY-MM-DD.html`.
+- The final report should recommend opening `00_全局审批台.html` first; the single-day page is the detailed secondary entry.
 - The primary return action must be a prominent `复制审批结果` button.
 - The user-facing instruction must say: `点“复制审批结果”，然后回到 Codex 粘贴发给我。`
 - The copied payload may be JSON internally, but every visible label should call it `审批结果`, not `JSON`.
@@ -83,5 +86,7 @@ Do not leave the user on a blank textarea with no instruction.
 - Redesigning the approval page every run.
 - Removing action choices just to make the page shorter.
 - Showing technical-format labels as the obvious way to return approvals.
+- Reporting English artifact filenames as the main completion entry for Chinese users.
+- Generating only a single-day page without a global approval desk.
 - Relying on browser APIs without a visible fallback.
 - Shipping a page that only looks correct in the author's Mac browser.
