@@ -4,7 +4,7 @@ Use this guide when AI 复利系统 is installed for a new user, new computer, o
 
 ## Principle
 
-The user may be new to Codex, GitHub, Skills, local paths, approval pages, and JSON. Make setup feel like guided onboarding, not a technical interview.
+The user may be new to Codex, GitHub, Skills, local paths, approval pages, and approval result formats. Make setup feel like guided onboarding, not a technical interview.
 
 Before asking configuration questions, show the value introduction from `first-run-value-intro.md`.
 
@@ -35,7 +35,7 @@ Do not ask beginner-facing questions about:
 - process output directory,
 - evidence source,
 - approval format,
-- JSON format.
+- technical payload format.
 
 Default these choices instead and explain them in plain language.
 

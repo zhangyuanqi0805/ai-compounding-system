@@ -33,7 +33,7 @@ During setup:
 - Ask for the user's digital asset library location, because that is the stable destination for approved assets.
 - If the user has no asset library, accept `暂时没有` and keep asset actions as recommendation-only.
 - Use the local HTML approval workbench by default. Do not make beginners choose between HTML, Markdown, and chat-only approval unless they ask.
-- In the approval workbench, make `复制审批结果` the primary return action. JSON may remain the technical payload, but do not require beginners to understand JSON.
+- In the approval workbench, make `复制审批结果` the primary return action. The structured payload may be JSON internally, but user-facing labels and instructions should say `审批结果`, not `JSON`.
 - Do not turn on automation until the user has seen one sample review.
 - If the requested first sample day has little or no Codex/Code Desk work, suggest choosing a recent high-workload day instead of forcing a low-value sample.
 
@@ -135,5 +135,5 @@ Drafts that may be reused later should include a bottom section named `Evidence 
 - Creating a cloud document or public draft before the user approved the content.
 - Losing halfway approvals by changing card IDs, storage keys, or page paths during a补漏 update.
 - Asking beginners to choose technical setup options that should be defaulted, such as evidence source, output folder, approval format, or reasoning effort.
-- Making JSON export the main user-facing action instead of a clear `复制审批结果` button with fallback instructions.
+- Using technical-format labels for approval return controls instead of a clear `复制审批结果` button with fallback instructions.
 - Using Mac-only CSS assumptions that make the approval page look broken in Windows Chrome.

@@ -56,11 +56,11 @@ Each card should show:
 - Notes must autosave locally if possible.
 - The primary return action must be a prominent `复制审批结果` button.
 - The user-facing instruction must say: `点“复制审批结果”，然后回到 Codex 粘贴发给我。`
-- The copied payload may be JSON, but the page should call it `审批结果`, not make a beginner understand JSON.
-- Advanced `下载 JSON` or `导出 JSON` controls may exist as secondary fallback actions, but must not be the main call to action.
+- The copied payload may be JSON internally, but every visible label should call it `审批结果`, not `JSON`.
+- Secondary fallback actions should use user-facing labels such as `下载审批结果备份` or `查看技术内容`; do not label visible buttons with the technical payload format.
 - Copied approval results must include card id, selected primary action, additional actions, digital asset action, note, changed flag, and source reference.
 - Card IDs should remain stable when the page is regenerated for the same date.
-- If a missing item is added while the user is mid-approval, preserve existing card IDs and provide an import/merge option for old JSON.
+- If a missing item is added while the user is mid-approval, preserve existing card IDs and provide an import/merge option for the old approval result payload.
 - Evidence can be folded, but not lost.
 
 ## Copy Fallback Behavior
@@ -82,6 +82,6 @@ Do not leave the user on a blank textarea with no instruction.
 - Mixing writing approval with asset-library approval.
 - Redesigning the approval page every run.
 - Removing action choices just to make the page shorter.
-- Making `导出 JSON` the only obvious way to return approvals.
+- Showing technical-format labels as the obvious way to return approvals.
 - Relying on browser APIs without a visible fallback.
 - Shipping a page that only looks correct in the author's Mac browser.
