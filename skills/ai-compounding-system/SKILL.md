@@ -1,11 +1,11 @@
 ---
 name: ai-compounding-system
-description: Use when the user asks to review a specific day of AI/Codex work, create an approval workbench, turn agent activity into reusable assets, or set up a daily AI compounding workflow.
+description: Use when the user asks to review a specific day of Codex/Code Desk work, create an approval workbench, turn agent activity into reusable assets, or set up a daily Codex compounding workflow.
 ---
 
-# AI Compounding System
+# Codex Compounding System
 
-AI 复利系统把一天的 AI 协作记录变成可审批、可复用、可校准的资产线索。它不是普通日记；它优先识别规则、Skill、文稿、流程、数字资产和需要丢弃的噪音。
+Codex 复利系统把一天的 Codex/Code Desk 协作记录变成可审批、可复用、可校准的资产线索。它不是普通日记；它优先识别规则、Skill、文稿、流程、数字资产和需要丢弃的噪音。
 
 ## First-Time Setup Gate
 
@@ -16,7 +16,7 @@ If this workspace has no configuration, or the user says this is the first run, 
 Default configuration path:
 
 ```text
-<CODE_DESK_WORKBENCH>/.ai-compounding-system/config.md
+<CODE_DESK_WORKBENCH>/.codex-compounding-system/config.md
 ```
 
 During setup:
@@ -151,7 +151,7 @@ The main card is for human judgment, not evidence storage. Use this order:
 - **这是什么：** one normal-language sentence identifying the item.
 - **当天结果：** what was achieved, changed, blocked, or only discussed.
 - **为什么进卡：** why it matters enough to review, or why it may be noise.
-- **推荐下一步：** one sentence combining the default recommendation, what Codex/AI will do after approval, and what the user needs to decide.
+- **推荐下一步：** one sentence combining the default recommendation, what Codex will do after approval, and what the user needs to decide.
 
 Put source path, rollout ID, privacy, long evidence, and target paths in folded details, an inspector panel, or the evidence index.
 
@@ -163,7 +163,7 @@ The first single-day overview should give emotional value before the cards:
 
 ## Digital Asset Boundary
 
-Treat the AI workbench as the drafting area and the user's asset library as the stable cabinet.
+Treat the Codex workbench as the drafting area and the user's asset library as the stable cabinet.
 
 - Content approval is not asset-library approval.
 - `主题摘要通过-写初稿` only means generate a first draft for review.

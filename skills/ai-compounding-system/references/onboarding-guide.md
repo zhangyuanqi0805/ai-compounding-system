@@ -1,6 +1,6 @@
 # Onboarding Guide
 
-Use this guide when AI 复利系统 is installed for a new user, new computer, or new Codex/Code Desk setup.
+Use this guide when Codex 复利系统 is installed for a new user, new computer, or new Codex/Code Desk setup.
 
 ## Principle
 
@@ -23,7 +23,7 @@ If the user has just installed the Skill, ask them to restart Codex or open a ne
 User-facing wording:
 
 ```text
-安装已经完成。为了让 Codex 稳定识别新 Skill，请先重启 Codex，或者至少新开一个 Codex 会话。重启后直接对我说：“启动 AI 复利系统首次配置”。
+安装已经完成。为了让 Codex 稳定识别新 Skill，请先重启 Codex，或者至少新开一个 Codex 会话。重启后直接对我说：“启动 Codex 复利系统首次配置”。
 ```
 
 ## Do Not Ask Beginners
@@ -44,7 +44,7 @@ Use these defaults unless the user explicitly asks to change them:
 
 - **Review scope:** Codex/Code Desk work records and local process artifacts.
 - **Cloud content:** record links only until the user explicitly authorizes reading.
-- **Process artifacts:** save under the current Codex/Code Desk workbench, recommended folder `AI复利系统/过程产物/`.
+- **Process artifacts:** save under the current Codex/Code Desk workbench, recommended folder `Codex复利系统/过程产物/`.
 - **Approval surface:** local HTML approval workbench.
 - **Approval entry:** always create `00_全局审批台.html` and `01_单日审批台_YYYY-MM-DD.html`; recommend the global approval desk first.
 - **Approval return:** user clicks `复制审批结果`, then pastes the result back into Codex.
@@ -112,7 +112,7 @@ Explain:
 Question:
 
 ```text
-第 3/5 步：要不要我帮你建立一个 `全局复利与踩坑日志.md`？以后推进出结果时，可以把成功经验写进去；踩坑犯错时，也可以把教训写进去，让 AI 越来越懂你的标准。
+第 3/5 步：要不要我帮你建立一个 `全局复利与踩坑日志.md`？以后推进出结果时，可以把成功经验写进去；踩坑犯错时，也可以把教训写进去，让 Codex 越来越懂你的标准。
 ```
 
 Recommended default: create it unless the user explicitly says no.
@@ -148,13 +148,13 @@ If the chosen day has little or no evidence, do not force a low-value review. Te
 After setup, create:
 
 ```text
-<CODE_DESK_WORKBENCH>/.ai-compounding-system/config.md
+<CODE_DESK_WORKBENCH>/.codex-compounding-system/config.md
 ```
 
 Minimum content:
 
 ```markdown
-# AI 复利系统配置
+# Codex 复利系统配置
 
 - 数字资产库目录：
 - 工作台过程产物目录：
@@ -177,7 +177,7 @@ Before starting the sample, summarize:
 ```text
 我将使用这些设置：
 - 数字资产库：
-- 过程产物目录：当前 Codex/Code Desk 工作台下的 AI复利系统/过程产物/
+- 过程产物目录：当前 Codex/Code Desk 工作台下的 Codex复利系统/过程产物/
 - 时区：
 - 证据来源：Codex/Code Desk 工作记录和本地过程产物；云端内容只记录链接，授权后才读取
 - 审批方式：本地 HTML 审批台；完成后优先打开 `00_全局审批台.html`，再进入 `01_单日审批台_YYYY-MM-DD.html`；审批后点击“复制审批结果”粘贴回 Codex

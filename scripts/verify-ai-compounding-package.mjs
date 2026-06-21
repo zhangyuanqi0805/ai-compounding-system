@@ -54,7 +54,15 @@ expectFile("skills/ai-compounding-system/assets/approval-workbench-mac.css");
 expectFile("skills/ai-compounding-system/assets/approval-workbench.js");
 expectFile("skills/ai-compounding-system/schemas/approval-actions.json");
 
+expectAllIncludes("README.md", [
+  "# Codex 复利系统",
+  "https://github.com/zhangyuanqi0805/codex-compounding-system",
+  "技术调用名仍保留为 `$ai-compounding-system`",
+]);
+
 expectAllIncludes("skills/ai-compounding-system/SKILL.md", [
+  "# Codex Compounding System",
+  "Codex 复利系统",
   "templates/00_全局审批台.template.html",
   "templates/01_单日审批台.template.html",
   "schemas/approval-actions.json",
@@ -66,6 +74,11 @@ expectAllIncludes("skills/ai-compounding-system/SKILL.md", [
   "全局复利与踩坑日志",
   "高档优先",
   "超高档",
+]);
+
+expectAllIncludes("skills/ai-compounding-system/agents/openai.yaml", [
+  "display_name: \"Codex复利系统\"",
+  "Codex/Code Desk 协作复盘",
 ]);
 
 expectAllIncludes("skills/ai-compounding-system/references/onboarding-guide.md", [
@@ -147,6 +160,20 @@ expectNotIncludes("skills/ai-compounding-system/templates/00_全局审批台.tem
 expectNotIncludes("skills/ai-compounding-system/templates/00_全局审批台.template.html", "acs-shell");
 expectNotIncludes("skills/ai-compounding-system/templates/01_单日审批台.template.html", "acs-shell");
 expectNotIncludes("skills/ai-compounding-system/assets/approval-workbench-mac.css", ".acs-shell");
+for (const relativePath of [
+  "README.md",
+  "examples/first-run-prompt.md",
+  "examples/one-line-install-prompt.txt",
+  "examples/three-minute-intro.md",
+  "skills/ai-compounding-system/SKILL.md",
+  "skills/ai-compounding-system/agents/openai.yaml",
+  "skills/ai-compounding-system/references/first-run-value-intro.md",
+  "skills/ai-compounding-system/references/onboarding-guide.md",
+]) {
+  expectNotIncludes(relativePath, "AI 复利系统");
+  expectNotIncludes(relativePath, "AI复利系统");
+  expectNotIncludes(relativePath, "zhangyuanqi0805/ai-compounding-system");
+}
 
 const failed = checks.filter((check) => !check.ok);
 if (failed.length) {

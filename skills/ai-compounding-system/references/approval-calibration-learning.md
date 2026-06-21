@@ -1,6 +1,6 @@
 # Approval Calibration Learning
 
-This is a template for the AI 复利系统 calibration file. Keep it local to the user's workspace. Do not publish real approval data without permission.
+This is a template for the Codex 复利系统 calibration file. Keep it local to the user's workspace. Do not publish real approval data without permission.
 
 ## When to Read
 

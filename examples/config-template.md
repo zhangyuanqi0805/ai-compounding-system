@@ -1,9 +1,9 @@
-# AI 复利系统配置模板
+# Codex 复利系统配置模板
 
 如果你想手动保存配置，可以把这份模板放到 Codex/Code Desk 工作台的配置文件里，例如：
 
 ```text
-<CODE_DESK_WORKBENCH>/.ai-compounding-system/config.md
+<CODE_DESK_WORKBENCH>/.codex-compounding-system/config.md
 ```
 
 ## 基础信息
@@ -11,7 +11,7 @@
 - 用户称呼：
 - 默认时区：Asia/Shanghai
 - 数字资产库目录：
-- Codex/Code Desk 过程产物目录：默认由 Codex 在当前工作台下创建 `AI复利系统/过程产物/`
+- Codex/Code Desk 过程产物目录：默认由 Codex 在当前工作台下创建 `Codex复利系统/过程产物/`
 - 复盘输出目录：默认跟随过程产物目录
 - 默认主入口：`00_全局审批台.html`
 - 单日审批页：`01_单日审批台_YYYY-MM-DD.html`

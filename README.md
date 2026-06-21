@@ -1,12 +1,12 @@
-# AI 复利系统
+# Codex 复利系统
 
-让 Codex 不只是帮你干活，而是每天把 AI 协作记录变成可审批、可复用、会持续校准的工作资产。
+让 Codex 不只是帮你干活，而是每天把 Codex/Code Desk 协作记录变成可审批、可复用、会持续校准的工作资产。
 
 ## 先用 30 秒看懂它为什么值得装
 
-AI 复利系统不是又一个总结工具。它会每天回看你和 Codex/Code Desk 干过的活，把零散聊天、临时文件和过程产物整理成一张可审批的工作台：哪些该沉淀成规则，哪些该做成 Skill，哪些值得写成稿，哪些应该进入数字资产库，哪些应该丢弃。
+Codex 复利系统不是又一个总结工具。它会每天回看你和 Codex/Code Desk 干过的活，把零散聊天、临时文件和过程产物整理成一张可审批的工作台：哪些该沉淀成规则，哪些该做成 Skill，哪些值得写成稿，哪些应该进入数字资产库，哪些应该丢弃。
 
-它的目标是让你每次使用 AI 都不是一次性消耗，而是让当天的工作变成明天更好用的能力。
+它的目标是让你每次使用 Codex/Code Desk 都不是一次性消耗，而是让当天的工作变成明天更好用的能力。
 
 ## 推理档位怎么选
 
@@ -17,7 +17,7 @@ AI 复利系统不是又一个总结工具。它会每天回看你和 Codex/Code
 把下面这句话复制给你的 Codex：
 
 ```text
-请使用 skill-installer 从 https://github.com/zhangyuanqi0805/ai-compounding-system/tree/main/skills/ai-compounding-system 安装 AI 复利系统 Skill。安装完成后提醒我重启 Codex；重启后先用 3 分钟介绍告诉我它能解决什么问题、最终会得到什么，然后启动首次配置向导，逐个问题问我完成个性化设置，并先跑一个指定日期的小样。
+请使用 skill-installer 从 https://github.com/zhangyuanqi0805/codex-compounding-system/tree/main/skills/ai-compounding-system 安装 Codex 复利系统 Skill。安装完成后提醒我重启 Codex；重启后先用 3 分钟介绍告诉我它能解决什么问题、最终会得到什么，然后启动首次配置向导，逐个问题问我完成个性化设置，并先跑一个指定日期的小样。
 ```
 
 这就是给新手用户的主入口。用户不需要先理解 Skill 目录、配置文件或命令行；Codex 会负责安装、提醒重启、启动向导、逐步问问题。
@@ -27,20 +27,22 @@ AI 复利系统不是又一个总结工具。它会每天回看你和 Codex/Code
 如果你的 Codex 已经支持 `$skill-installer`，也可以这样说：
 
 ```text
-Use $skill-installer to install the skill from https://github.com/zhangyuanqi0805/ai-compounding-system/tree/main/skills/ai-compounding-system. After installation, tell me to restart Codex. After restart, use $ai-compounding-system to show a short value introduction, then run the first-time setup wizard step by step.
+Use $skill-installer to install the skill from https://github.com/zhangyuanqi0805/codex-compounding-system/tree/main/skills/ai-compounding-system. After installation, tell me to restart Codex. After restart, use $ai-compounding-system to show a short value introduction, then run the first-time setup wizard step by step.
 ```
+
+说明：当前 Skill 的技术调用名仍保留为 `$ai-compounding-system`，这是为了兼容旧线程、旧提示词和已安装用户；对外中文名统一叫 `Codex 复利系统`。
 
 如果当前 Codex 没有 `skill-installer`，可以让 Codex 手动安装：
 
 ```text
-请下载 https://github.com/zhangyuanqi0805/ai-compounding-system，把其中的 skills/ai-compounding-system 文件夹复制到我的 Codex Skills 目录；复制完成后提醒我重启 Codex。重启后先用 3 分钟介绍告诉我它能解决什么问题，再启动首次配置向导。
+请下载 https://github.com/zhangyuanqi0805/codex-compounding-system，把其中的 skills/ai-compounding-system 文件夹复制到我的 Codex Skills 目录；复制完成后提醒我重启 Codex。重启后先用 3 分钟介绍告诉我它能解决什么问题，再启动首次配置向导。
 ```
 
 ## 它解决什么问题
 
-很多人每天用 AI 做了很多事，但结果散落在聊天、文件、截图和临时草稿里。第二天再用 AI，又像从零开始解释一遍。
+很多人每天用 Codex/Code Desk 做了很多事，但结果散落在聊天、文件、截图和临时草稿里。第二天再用，又像从零开始解释一遍。
 
-AI 复利系统的目标是把这些协作记录转成四类东西：
+Codex 复利系统的目标是把这些协作记录转成四类东西：
 
 - 可审批判断卡：今天哪些值得继续处理，哪些应该丢弃。
 - 可复用资产：规则、流程、Skill、文稿、模板、案例。
