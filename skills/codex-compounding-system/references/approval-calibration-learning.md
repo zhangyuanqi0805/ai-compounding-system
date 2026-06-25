@@ -29,7 +29,7 @@ If the user accepts all defaults, record one line saying the defaults were verif
 | duplicate asset | A rule, Skill, draft, or asset already exists | State `已有` first and avoid recommending a duplicate action. |
 | unclear next step | The user cannot tell what will happen after approval | Use `推荐下一步` to combine the suggested action, agent work, and user's decision boundary. |
 | draft/asset confusion | A draft action is treated as asset-library approval | Separate writing approval from asset-library approval. |
-| manual/update confusion | A maintenance-manual action is mixed with asset-library action | Keep manual updates as a separate approval dimension. |
+| manual/update confusion | A handbook/manual update action is mixed with asset-library action | Keep handbook or manual updates as a separate approval dimension. |
 
 ## Boundary
 

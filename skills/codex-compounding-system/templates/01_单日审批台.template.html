@@ -6,7 +6,7 @@
   <title>{{REVIEW_DATE}} 单日复盘审批台</title>
   <link rel="stylesheet" href="../assets/approval-workbench-mac.css">
 </head>
-<body data-approval-version="v3-apc-maintenance-manual-action">
+<body data-approval-version="v4-apc-operating-handbook-action">
   <div class="app-shell">
     <div class="windowbar">
       <div class="dots" aria-label="窗口按钮">
@@ -58,7 +58,7 @@
           <div class="metric"><strong>{{DEFAULT_DROP_COUNT}}</strong><span class="muted">默认不推进</span></div>
           <div class="metric"><strong>{{AVG_PASS_RATE}}</strong><span class="muted">默认通过率预估</span></div>
         </section>
-        <section class="notice">写初稿类卡片的后续动作固定为“在 Codex 工作台生成初稿让你审核”。是否进入数字资产库、是否更新 APC 维护手册都单独审批，不和写稿动作混在一起。</section>
+        <section class="notice">写初稿类卡片的后续动作固定为“在 Codex 工作台生成初稿让你审核”。是否进入数字资产库、是否更新 APC 经营手册都单独审批，不和写稿动作混在一起。</section>
         <section class="cards" id="cards" aria-label="审批卡片">
           {{APPROVAL_CARDS}}
           <article class="card" data-acs-card-id="{{CARD_ID}}" data-default-primary-action="{{DEFAULT_PRIMARY_ACTION}}" data-default-asset-action="{{DEFAULT_ASSET_ACTION}}" data-default-apc-manual-action="{{DEFAULT_APC_MANUAL_ACTION}}">
@@ -133,13 +133,13 @@
               </div>
             </div>
             <div class="field">
-              <h3>APC 维护手册动作（单选）</h3>
+              <h3>APC 经营手册动作（单选）</h3>
               <div class="asset-choices">
-                <label class="asset-choice"><input type="radio" name="apc-manual-{{CARD_ID}}" value="不处理维护手册">不处理维护手册</label>
-                <label class="asset-choice"><input type="radio" name="apc-manual-{{CARD_ID}}" value="建议更新_APC维护手册">建议更新_APC维护手册</label>
-                <label class="asset-choice"><input type="radio" name="apc-manual-{{CARD_ID}}" value="已在维护手册">已在维护手册</label>
+                <label class="asset-choice"><input type="radio" name="apc-manual-{{CARD_ID}}" value="不处理经营手册">不处理经营手册</label>
+                <label class="asset-choice"><input type="radio" name="apc-manual-{{CARD_ID}}" value="建议更新_APC经营手册">建议更新_APC经营手册</label>
+                <label class="asset-choice"><input type="radio" name="apc-manual-{{CARD_ID}}" value="已在经营手册">已在经营手册</label>
                 <label class="asset-choice"><input type="radio" name="apc-manual-{{CARD_ID}}" value="待用户确认">待用户确认</label>
-                <label class="asset-choice"><input type="radio" name="apc-manual-{{CARD_ID}}" value="不适合写入维护手册">不适合写入维护手册</label>
+                <label class="asset-choice"><input type="radio" name="apc-manual-{{CARD_ID}}" value="不适合写入经营手册">不适合写入经营手册</label>
                 <label class="asset-choice"><input type="radio" name="apc-manual-{{CARD_ID}}" value="下次版本再说">下次版本再说</label>
               </div>
             </div>
@@ -158,7 +158,7 @@
       </main>
       <aside class="inspector">
         <h2>处理状态</h2>
-        <div class="inspector-card"><strong>完整动作区</strong><p>主动作只能选一个；附加动作可多选；数字资产动作和 APC 维护手册动作单独判断。</p></div>
+        <div class="inspector-card"><strong>完整动作区</strong><p>主动作只能选一个；附加动作可多选；数字资产动作和 APC 经营手册动作单独判断。</p></div>
         <div class="inspector-card"><strong>执行边界</strong><p>本页只是审批材料。必须复制审批结果发回 Codex 后，才会执行被审批的动作。</p></div>
       </aside>
     </div>

@@ -7,7 +7,7 @@ function cardId(card) {
 function collectApprovalResult() {
   const cards = [...document.querySelectorAll("[data-acs-card-id], .card[data-id]")];
   return {
-    approvalVersion: document.body.dataset.approvalVersion || "v3-apc-maintenance-manual-action",
+    approvalVersion: document.body.dataset.approvalVersion || "v4-apc-operating-handbook-action",
     exportedAt: new Date().toISOString(),
     decisions: cards.map((card) => {
       const id = cardId(card);

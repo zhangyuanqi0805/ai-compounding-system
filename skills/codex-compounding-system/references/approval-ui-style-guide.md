@@ -114,6 +114,8 @@ Before reporting completion, perform 输出后自检:
 - Every approval card has additional action controls, digital asset action controls, and a note field.
 - The visible return button says `复制审批结果`.
 - The fallback textarea and copy-failure instruction are visible.
+- Any review card that asks the user to inspect a local draft has visible `打开稿件`, `Finder 显示`, `编辑器打开`, `复制路径`, and `复制 Finder 命令` controls near the top of the card.
+- Local source-open controls were tested with a real local-open request for the exact source path. If the service rejects the path, fix the allowed root or report the blocker; do not ship silent no-op buttons.
 
 ## Copy Fallback Behavior
 

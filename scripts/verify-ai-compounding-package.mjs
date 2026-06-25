@@ -4,6 +4,8 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const mainSkill = "skills/codex-compounding-system";
+const legacySkill = "skills/ai-compounding-system";
 
 const checks = [];
 
@@ -31,12 +33,8 @@ function expectIncludes(relativePath, text) {
 }
 
 function expectAllIncludes(relativePath, texts) {
-  const content = fs.existsSync(file(relativePath)) ? read(relativePath) : "";
   for (const text of texts) {
-    checks.push({
-      label: `${relativePath} includes ${text}`,
-      ok: content.includes(text),
-    });
+    expectIncludes(relativePath, text);
   }
 }
 
@@ -48,19 +46,30 @@ function expectNotIncludes(relativePath, text) {
   });
 }
 
-expectFile("skills/ai-compounding-system/templates/00_全局审批台.template.html");
-expectFile("skills/ai-compounding-system/templates/01_单日审批台.template.html");
-expectFile("skills/ai-compounding-system/assets/approval-workbench-mac.css");
-expectFile("skills/ai-compounding-system/assets/approval-workbench.js");
-expectFile("skills/ai-compounding-system/schemas/approval-actions.json");
+for (const relativePath of [
+  `${mainSkill}/SKILL.md`,
+  `${mainSkill}/agents/openai.yaml`,
+  `${mainSkill}/templates/00_全局审批台.template.html`,
+  `${mainSkill}/templates/01_单日审批台.template.html`,
+  `${mainSkill}/assets/approval-workbench-mac.css`,
+  `${mainSkill}/assets/approval-workbench.js`,
+  `${mainSkill}/schemas/approval-actions.json`,
+  `${legacySkill}/SKILL.md`,
+  `${legacySkill}/agents/openai.yaml`,
+]) {
+  expectFile(relativePath);
+}
 
 expectAllIncludes("README.md", [
   "# Codex 复利系统",
   "https://github.com/zhangyuanqi0805/codex-compounding-system",
-  "技术调用名仍保留为 `$ai-compounding-system`",
+  "skills/codex-compounding-system",
+  "主技术调用名是 `$codex-compounding-system`",
+  "旧 `$ai-compounding-system` 和 `$single-day-review` 只作为兼容入口",
 ]);
 
-expectAllIncludes("skills/ai-compounding-system/SKILL.md", [
+expectAllIncludes(`${mainSkill}/SKILL.md`, [
+  "name: codex-compounding-system",
   "# Codex Compounding System",
   "Codex 复利系统",
   "templates/00_全局审批台.template.html",
@@ -76,12 +85,23 @@ expectAllIncludes("skills/ai-compounding-system/SKILL.md", [
   "超高档",
 ]);
 
-expectAllIncludes("skills/ai-compounding-system/agents/openai.yaml", [
-  "display_name: \"Codex复利系统\"",
-  "Codex/Code Desk 协作复盘",
+expectAllIncludes(`${legacySkill}/SKILL.md`, [
+  "name: ai-compounding-system",
+  "compatibility alias for codex-compounding-system",
+  "load and follow the new main entry",
 ]);
 
-expectAllIncludes("skills/ai-compounding-system/references/onboarding-guide.md", [
+expectAllIncludes(`${mainSkill}/agents/openai.yaml`, [
+  "display_name: \"Codex复利系统\"",
+  "$codex-compounding-system",
+]);
+
+expectAllIncludes(`${legacySkill}/agents/openai.yaml`, [
+  "Codex复利系统（旧入口兼容）",
+  "$codex-compounding-system",
+]);
+
+expectAllIncludes(`${mainSkill}/references/onboarding-guide.md`, [
   "第 0.4 步",
   "愿意",
   "暂时不",
@@ -90,7 +110,7 @@ expectAllIncludes("skills/ai-compounding-system/references/onboarding-guide.md",
   "全局复利与踩坑日志",
 ]);
 
-expectAllIncludes("skills/ai-compounding-system/references/approval-calibration-learning.md", [
+expectAllIncludes(`${mainSkill}/references/approval-calibration-learning.md`, [
   "This is a template",
   "Keep it local",
   "Do not publish real approval data without permission",
@@ -98,14 +118,14 @@ expectAllIncludes("skills/ai-compounding-system/references/approval-calibration-
   "Do not turn one correction into a permanent rule too quickly",
 ]);
 
-expectAllIncludes("skills/ai-compounding-system/references/writing-feedback-learning.md", [
+expectAllIncludes(`${mainSkill}/references/writing-feedback-learning.md`, [
   "Keep it local",
   "Default Writing Checks",
   "Ask whether the user wants to continue from first draft to polished draft or public draft",
   "Do not paste sensitive transcripts into this file",
 ]);
 
-expectAllIncludes("skills/ai-compounding-system/references/approval-ui-style-guide.md", [
+expectAllIncludes(`${mainSkill}/references/approval-ui-style-guide.md`, [
   "必须优先复制模板",
   "不允许从零生成另一套审批台",
   "canonical source is local first",
@@ -118,7 +138,7 @@ expectAllIncludes("skills/ai-compounding-system/references/approval-ui-style-gui
   "输出后自检",
 ]);
 
-expectAllIncludes("skills/ai-compounding-system/templates/01_单日审批台.template.html", [
+expectAllIncludes(`${mainSkill}/templates/01_单日审批台.template.html`, [
   "太棒了",
   "复制审批结果",
   "app-shell",
@@ -136,43 +156,71 @@ expectAllIncludes("skills/ai-compounding-system/templates/01_单日审批台.tem
   "丢弃",
 ]);
 
-expectAllIncludes("skills/ai-compounding-system/templates/00_全局审批台.template.html", [
+expectAllIncludes(`${mainSkill}/assets/approval-workbench.js`, [
+  "apcMaintenanceManualAction",
+]);
+
+expectAllIncludes(`${mainSkill}/templates/00_全局审批台.template.html`, [
   "app-shell",
   "windowbar",
   "sidebar",
   "inspector",
   "total-date-card",
-  "flex-wrap: nowrap",
-  "grid-template-columns: minmax(260px, 1fr) max-content max-content",
+  "flex-wrap: wrap",
+  ".total-shell .inspector { display: none; }",
+  "grid-template-columns: minmax(0, 1fr)",
   "总审批台",
   "审批规则",
   "主动作单选",
   "备注需复制审批结果",
 ]);
 
-expectNotIncludes("skills/ai-compounding-system/templates/00_全局审批台.template.html", "class=\"wrap\"");
-expectNotIncludes("skills/ai-compounding-system/templates/00_全局审批台.template.html", "class=\"search\"");
-expectNotIncludes("skills/ai-compounding-system/templates/00_全局审批台.template.html", "<section class=\"hero\"");
-expectNotIncludes("skills/ai-compounding-system/templates/00_全局审批台.template.html", "{{INTERNAL_REVIEW_HREF}}");
-expectNotIncludes("skills/ai-compounding-system/templates/00_全局审批台.template.html", ">内部稿<");
-expectNotIncludes("skills/ai-compounding-system/templates/00_全局审批台.template.html", "本地成熟口径");
-expectNotIncludes("skills/ai-compounding-system/templates/00_全局审批台.template.html", "恢复来源");
-expectNotIncludes("skills/ai-compounding-system/templates/00_全局审批台.template.html", "acs-shell");
-expectNotIncludes("skills/ai-compounding-system/templates/01_单日审批台.template.html", "acs-shell");
-expectNotIncludes("skills/ai-compounding-system/assets/approval-workbench-mac.css", ".acs-shell");
+for (const relativePath of [
+  `${mainSkill}/templates/00_全局审批台.template.html`,
+  `${mainSkill}/templates/01_单日审批台.template.html`,
+]) {
+  expectNotIncludes(relativePath, "acs-shell");
+}
+
+expectNotIncludes(`${mainSkill}/templates/00_全局审批台.template.html`, "class=\"wrap\"");
+expectNotIncludes(`${mainSkill}/templates/00_全局审批台.template.html`, "class=\"search\"");
+expectNotIncludes(`${mainSkill}/templates/00_全局审批台.template.html`, "<section class=\"hero\"");
+expectNotIncludes(`${mainSkill}/templates/00_全局审批台.template.html`, "{{INTERNAL_REVIEW_HREF}}");
+expectNotIncludes(`${mainSkill}/templates/00_全局审批台.template.html`, ">内部稿<");
+expectNotIncludes(`${mainSkill}/templates/00_全局审批台.template.html`, "本地成熟口径");
+expectNotIncludes(`${mainSkill}/templates/00_全局审批台.template.html`, "恢复来源");
+expectNotIncludes(`${mainSkill}/assets/approval-workbench-mac.css`, ".acs-shell");
+
 for (const relativePath of [
   "README.md",
+  "examples/config-template.md",
   "examples/first-run-prompt.md",
   "examples/one-line-install-prompt.txt",
   "examples/three-minute-intro.md",
-  "skills/ai-compounding-system/SKILL.md",
-  "skills/ai-compounding-system/agents/openai.yaml",
-  "skills/ai-compounding-system/references/first-run-value-intro.md",
-  "skills/ai-compounding-system/references/onboarding-guide.md",
+  `${mainSkill}/SKILL.md`,
+  `${mainSkill}/agents/openai.yaml`,
+  `${legacySkill}/SKILL.md`,
+  `${legacySkill}/agents/openai.yaml`,
+  `${mainSkill}/references/first-run-value-intro.md`,
+  `${mainSkill}/references/onboarding-guide.md`,
 ]) {
   expectNotIncludes(relativePath, "AI 复利系统");
   expectNotIncludes(relativePath, "AI复利系统");
+  expectNotIncludes(relativePath, "Codex/Code Desk");
+  expectNotIncludes(relativePath, "CodeDesk");
+  expectNotIncludes(relativePath, "Code Desk");
   expectNotIncludes(relativePath, "zhangyuanqi0805/ai-compounding-system");
+}
+
+for (const relativePath of [
+  `${mainSkill}/SKILL.md`,
+  `${legacySkill}/SKILL.md`,
+  `${mainSkill}/references/approval-calibration-learning.md`,
+  `${mainSkill}/references/writing-feedback-learning.md`,
+]) {
+  expectNotIncludes(relativePath, "/Users/zhangyuanqi");
+  expectNotIncludes(relativePath, "2026-06-");
+  expectNotIncludes(relativePath, "老大");
 }
 
 const failed = checks.filter((check) => !check.ok);

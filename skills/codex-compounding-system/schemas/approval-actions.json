@@ -1,5 +1,5 @@
 {
-  "version": "v3-apc-maintenance-manual-action",
+  "version": "v4-apc-operating-handbook-action",
   "primaryActions": [
     "写全局规则",
     "写项目规则",
@@ -31,20 +31,20 @@
     "另建素材包"
   ],
   "apcMaintenanceManualActions": [
-    "不处理维护手册",
-    "建议更新_APC维护手册",
-    "已在维护手册",
+    "不处理经营手册",
+    "建议更新_APC经营手册",
+    "已在经营手册",
     "待用户确认",
-    "不适合写入维护手册",
+    "不适合写入经营手册",
     "下次版本再说"
   ],
   "rules": [
     "Every approval card must render the full primaryActions list, even when only one default action is recommended.",
     "Additional actions are optional multi-select controls, but the standard options must remain available unless a local config explicitly hides them.",
     "Digital asset actions are separate from writing actions. Writing a draft never means copying it into the asset library.",
-    "APC maintenance manual actions are separate from digital asset actions. Updating the APC manual never means copying the item into the asset library.",
-    "For APC-related cards, check whether the lesson, rule, Skill, role, workflow, or case is already reflected in the APC maintenance manual. If not reflected and worth preserving, ask whether to update the manual.",
-    "When an APC maintenance manual update is approved, create a new manual version and keep the previous version as history unless the user explicitly asks to overwrite.",
+    "APC operating handbook actions are separate from digital asset actions. Updating the APC handbook never means copying the item into the asset library.",
+    "For APC-related cards, check whether the lesson, rule, Skill, role, workflow, or case is already reflected in the APC operating handbook. If not reflected and worth preserving, ask whether to update the handbook.",
+    "When an APC operating handbook update is approved, create a new handbook version and keep the previous version as history unless the user explicitly asks to overwrite.",
     "If primary action is 待定-看备注 or 丢弃, additional actions are not executed unless the user's note clearly overrides the primary action."
   ]
 }
